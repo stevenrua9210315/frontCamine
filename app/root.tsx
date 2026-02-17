@@ -44,7 +44,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return (<Auth0Provider
+  return (
+    <Auth0Provider
       domain={config.AUTH0_DOMAIN}
       clientId={config.AUTH0_CLIENT_ID}
       authorizationParams={{
@@ -52,10 +53,12 @@ export default function App() {
         redirect_uri: config.AUTH0_CALLBACK_URL,
         scope: "openid profile email offline_access",
       }}
+      cacheLocation="localstorage"
+      useRefreshTokens={true}
     >
       <Outlet />
-    </Auth0Provider>)
-    
+    </Auth0Provider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
