@@ -9,8 +9,8 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import { Auth0Provider } from "@auth0/auth0-react";
 import { config } from "./config";
+import { Auth0Provider } from "./components/auth/Auth0Provider";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

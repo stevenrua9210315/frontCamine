@@ -1,4 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
+import { getMe } from "~/api/queries";
 
 export default function Home() {
   const {
@@ -24,6 +26,10 @@ export default function Home() {
       </div>
     );
   }
+
+  useEffect(()=>{
+    getMe();
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 font-sans">
