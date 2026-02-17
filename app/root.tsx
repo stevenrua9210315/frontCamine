@@ -48,7 +48,7 @@ export default function App() {
       domain={config.AUTH0_DOMAIN}
       clientId={config.AUTH0_CLIENT_ID}
       authorizationParams={{
-        //audience: config.AUTH0_API_AUDIENCE,
+        audience: config.AUTH0_API_AUDIENCE,
         redirect_uri: config.AUTH0_CALLBACK_URL,
         scope: "openid profile email offline_access",
       }}
