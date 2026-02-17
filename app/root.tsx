@@ -9,6 +9,8 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { Auth0Provider } from "@auth0/auth0-react";
+import { config } from "./config";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -42,7 +44,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (<Auth0Provider
+      domain={config.AUTH0_DOMAIN}
+      clientId={config.AUTH0_CLIENT_ID}
+      authorizationParams={{
+        //audience: config.AUTH0_API_AUDIENCE,
+        redirect_uri: config.AUTH0_CALLBACK_URL,
+        scope: "openid profile email offline_access",
+      }}
+    >
+      <Outlet />
+    </Auth0Provider>)
+    
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
